@@ -77,10 +77,10 @@ when prompted.
 
 10. Recommended Method — Save the Terraform Plan
 For controlled server deployment, generate a plan file first:
-# .\terraform.exe plan -target="vsphere_virtual_machine.ans01" -out=ans01.tfplan
+# .\terraform.exe plan -target="vsphere_virtual_machine.jen01" -out=ans01.tfplan
 Review the plan.
 If everything is correct, apply the saved plan:
-# .\terraform.exe apply ans01.tfplan
+# .\terraform.exe apply jen01.tfplan
 This ensures that the configuration being applied is the same configuration that was reviewed during the planning stage.
 
 11. Create DOCK01 Server
@@ -121,19 +121,16 @@ For dock01:
 
 .\terraform.exe plan -target="vsphere_virtual_machine.dock01"
 .\terraform.exe apply -target="vsphere_virtual_machine.dock01"
+
 Incorrect Syntax
-
 Do not use:
-
--target=vsphere_virtual_machine = ans01
-
+-target=vsphere_virtual_machine = jen01
 or:
-
--target=vsphere_virtual_machine=ans01
+-target=vsphere_virtual_machine=jen01
 
 The Terraform resource address must use a dot (.) between the resource type and resource name:
+vsphere_virtual_machine.jen01
 
-vsphere_virtual_machine.ans01
 14. Complete ANS01 Deployment
 
 The recommended sequence is:
@@ -148,7 +145,7 @@ cd C:\terraform-vsphere
 
 .\terraform.exe plan -target="vsphere_virtual_machine.ans01" -out=ans01.tfplan
 
-.\terraform.exe apply ans01.tfplan
+.\terraform.exe apply jen01.tfplan
 15. Complete DOCK01 Deployment
 
 The recommended sequence is:
@@ -185,7 +182,7 @@ vCenter
        |
        +-- Cluster
             |
-            +-- ans01
+            +-- jen01
             |
             +-- dock01
 17. Troubleshooting
@@ -276,17 +273,18 @@ Before applying changes, always review the Terraform plan.
 Keep Terraform configuration and state files protected.
 Do not commit passwords, vCenter credentials, or other secrets into Git.
 For production environments, use a secure mechanism for Terraform variables and credentials.
+
 20. Quick Reference
-ANS01
+JEN01
 cd C:\terraform-vsphere
 
 .\terraform.exe init
 .\terraform.exe fmt
 .\terraform.exe validate
 
-.\terraform.exe plan -target="vsphere_virtual_machine.ans01" -out=ans01.tfplan
+.\terraform.exe plan -target="vsphere_virtual_machine.jen01" -out=jen01.tfplan
 
-.\terraform.exe apply ans01.tfplan
+.\terraform.exe apply jen01.tfplan
 DOCK01
 cd C:\terraform-vsphere
 

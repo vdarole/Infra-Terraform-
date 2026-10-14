@@ -59,16 +59,16 @@ Validate the Terraform configuration:
 Expected result:
 Success! The configuration is valid.
 
-9. Create the ANS01 Server
-The following commands can be used to create the ans01 VM.
+9. Create the JEN01 Server
+The following commands can be used to create the JEN01 VM.
 
 9.1 Create Terraform Plan
-# .\terraform.exe plan -target="vsphere_virtual_machine.ans01"
+# .\terraform.exe plan -target="vsphere_virtual_machine.jen01"
 Review the resources that Terraform plans to create.
 
 9.2 Apply the Configuration
 After reviewing the plan:
-# .\terraform.exe apply -target="vsphere_virtual_machine.ans01"
+# .\terraform.exe apply -target="vsphere_virtual_machine.jen01"
 
 Terraform will display the proposed changes.
 Enter:

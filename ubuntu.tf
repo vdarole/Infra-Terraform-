@@ -12,9 +12,9 @@ data "vsphere_virtual_machine" "ubuntu_template" {
 # Datastore: esxi02-datastore1
 # =========================================================
 
-resource "vsphere_virtual_machine" "ans01" {
+resource "vsphere_virtual_machine" "jen01" {
 
-  name = "ans01-vm"
+  name = "jen01-vm"
 
   # Explicit ESXi02 host
   host_system_id = data.vsphere_host.esxi02.id

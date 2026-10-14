@@ -7,7 +7,7 @@ data "vsphere_virtual_machine" "ubuntu_template" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 # =========================================================
-# ANSIBLE VM
+# JENKINS VM
 # ESXi02
 # Datastore: esxi02-datastore1
 # =========================================================
@@ -73,7 +73,6 @@ resource "vsphere_virtual_machine" "jen01" {
   }
 }
 
-
 # =========================================================
 # DOCKER VM
 # ESXi01
@@ -111,17 +110,13 @@ resource "vsphere_virtual_machine" "dock01" {
     adapter_type = "vmxnet3"
   }
 
-
   # =======================================================
   # NETWORK 2
   # =======================================================
-
   network_interface {
     network_id   = data.vsphere_network.network2.id
     adapter_type = "vmxnet3"
   }
-
-
   # =======================================================
   # DISK
   # =======================================================
@@ -143,31 +138,25 @@ resource "vsphere_virtual_machine" "dock01" {
 
 
   # =======================================================
-  # CREATE DOCK01 ONLY AFTER ANS01
+  # CREATE DOCK01 ONLY AFTER JEN01
   # =======================================================
 
   depends_on = [
-    vsphere_virtual_machine.ans01
+    vsphere_virtual_machine.JEN01
   ]
 }
-
 # =========================================================
 # TOMCAT DEVELOPMENT VM
 # ESXi02
 # Datastore: esxi02-datastore1
 # Created AFTER dock01
 # =========================================================
-
 resource "vsphere_virtual_machine" "tomd01" {
-
   name = "tomd01-vm"
-
   # Explicit ESXi02 host
   host_system_id = data.vsphere_host.esxi02.id
-
   # ESXi02 datastore
   datastore_id = data.vsphere_datastore.datastore_esxi02.id
-
   # Resource pool
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
 
